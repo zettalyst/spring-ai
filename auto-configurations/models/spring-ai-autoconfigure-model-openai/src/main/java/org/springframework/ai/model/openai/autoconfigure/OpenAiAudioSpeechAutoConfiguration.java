@@ -27,6 +27,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 
 /**
  * Audio Speech {@link AutoConfiguration Auto-configuration} for OpenAI SDK.
@@ -46,6 +47,7 @@ import org.springframework.context.annotation.Bean;
 public class OpenAiAudioSpeechAutoConfiguration {
 
 	@Bean
+	@Conditional(OpenAiConnectionCondition.AudioSpeech.class)
 	@ConditionalOnMissingBean
 	public OpenAiAudioSpeechModel openAiSdkAudioSpeechModel(OpenAiCommonProperties commonProperties,
 			OpenAiAudioSpeechProperties speechProperties) {
